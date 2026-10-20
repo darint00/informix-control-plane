@@ -1,0 +1,3 @@
+services:
+  agent:
+    image: registry.example.com/icp/sample-fastapi-agent:1.0.0

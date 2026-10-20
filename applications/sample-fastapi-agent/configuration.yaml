@@ -1,0 +1,34 @@
+apiVersion: icp/v1
+kind: ApplicationConfiguration
+spec:
+  application:
+    name: Sample FastAPI Agent
+    version: "1.0.0"
+  image:
+    repository: registry.example.com/icp/sample-fastapi-agent   # PLACEHOLDER - replace with your image
+    tag: "1.0.0"
+  environment:
+    AGENT_MODE: assistant
+  secrets:                       # names only; values are entered at deploy time and never stored
+    - name: LLM_API_KEY
+      description: API key for the model provider
+      required: true
+  ports:
+    - name: api
+      container: 8000
+      host: 8082
+  volumes:
+    - name: agent-data
+      mountPath: /data
+  resources:
+    cpus: 1
+    memory: 512m
+  healthcheck:
+    test: ["CMD-SHELL", "python -c \"import urllib.request;urllib.request.urlopen('http://127.0.0.1:8000/health')\""]
+  model:
+    provider: openai
+    id: gpt-4o-mini
+  logging:
+    level: info
+  settings:
+    max_turns: 10
