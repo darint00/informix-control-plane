@@ -27,7 +27,7 @@ spec:
       description: |
        Define the type of Storage used for VectorMPP 
       items:
-        - name: INSTALL_STORAGE_GCP
+        - name: services.web.ports 
           title: "Install GCP Storage"
           type: text 
           value: "Gcp options" 
