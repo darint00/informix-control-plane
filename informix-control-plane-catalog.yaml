@@ -75,3 +75,19 @@ spec:
         primary_service: web
       metadata:
         category: demo
+
+    - id: web-app-test
+      name: web app test 
+      description: Static web server (nginx) that can be deployed end-to-end from public images; use it to try ICP.
+      version: "1.0.0"
+      type: docker-application
+      configuration_file: applications/web-app-test/configuration.yaml
+      editable_files:
+        - applications/web-app-test/configuration.yaml
+        - applications/web-app-test/docker-compose.yaml
+      deployment:
+        method: docker-compose
+        manifest: applications/web-app-test/docker-compose.yaml
+        primary_service: web
+      metadata:
+        category: demo
