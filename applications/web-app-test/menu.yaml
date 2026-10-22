@@ -1,39 +1,43 @@
 kind: Menu 
 spec:
-    - name: INSTALL_TYPE 
-      title: "Install Type"
+    group:
+    - name Group1
       collapsible: true
-      description: |
-       Define the type of Storage used for VectorMPP 
       items:
-        - name: INSTALL_TYPE_RADIO 
-          type: radio 
-          default: install_all 
-          items:
-            - name: install_all 
-              title: "Install All"
-            - name: custom
-              title: Custom 
-            - name: debug_hang 
-              title: Debug Hang
-        - name: INSTALL_CUSTOM_OPTION
-          title: Install Custom Options 
-          type: text 
-          value: "" 
+      - name: INSTALL_TYPE 
+        title: "Install Type"
+        collapsible: true
+        description: |
+        Define the type of Storage used for VectorMPP 
+        items:
+          - name: INSTALL_TYPE_RADIO 
+            type: radio 
+            default: install_all 
+            items:
+              - name: install_all 
+                title: "Install All"
+              - name: custom
+                title: Custom 
+              - name: debug_hang 
+                title: Debug Hang
+          - name: INSTALL_CUSTOM_OPTION
+            title: Install Custom Options 
+            type: text 
+            value: "" 
 
-    - name: INSTALL_STORAGE
-      title: "Install Storage"
-      collapsible: true
-      description: |
-       Define the type of Storage used for VectorMPP 
-      items:
-        - name: services.web.ports 
-          title: "Install GCP Storage"
-          type: text 
-          value: "Gcp options" 
-        - name: INSTALL_STORAGE_AWS_
-          title: "Install AWS Storage"
-          type: text 
-          value: "AWS options" 
-    
+      - name: INSTALL_STORAGE
+        title: "Install Storage"
+        collapsible: true
+        description: |
+        Define the type of Storage used for VectorMPP 
+        items:
+          - name: services.web.ports 
+            title: "Install GCP Storage"
+            type: text 
+            value: "Gcp options" 
+          - name: INSTALL_STORAGE_AWS_
+            title: "Install AWS Storage"
+            type: text 
+            value: "AWS options" 
+      
 
