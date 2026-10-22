@@ -43,5 +43,17 @@ spec:
             title: "Install AWS Storage"
             type: text 
             value: "AWS options" 
-      
+
+      - name: SETTINGS
+        title: "Settings"
+        collapsible: true
+        description: |
+          Application-specific settings. ICP does not interpret this section.
+        items:
+          - name: settings.note
+            title: "Note"
+            type: text
+            value: "Application-specific settings go here; ICP does not interpret this section."
+
+
 
