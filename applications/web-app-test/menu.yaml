@@ -32,7 +32,7 @@ spec:
         title: "Install Storage"
         collapsible: true
         description: |
-        Define the type of Storage used for VectorMPP 
+          Define the type of Storage used for VectorMPP 
         items:
           - name:  INSTALL_STOAGE_GCP 
             title: "Install GCP Storage"
