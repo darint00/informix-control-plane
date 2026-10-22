@@ -21,14 +21,13 @@ spec:
             value: "128m"
     - name: SETTINGS
       title: "Settings"
-      collapsible: true
       description: |
-        Application-specific settings. ICP does not interpret this section.
+        Settings for the application
       items:
         - name: NOTE 
           title: "Note"
           type: text
-          value: "Application-specific settings go here; ICP does not interpret this section."
+          value: ""
     - name: LOGGING 
       title: "Logging"
       description: |
