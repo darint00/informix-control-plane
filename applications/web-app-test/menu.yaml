@@ -6,7 +6,7 @@ spec:
       collapsible: true
       items:
       - name: RESOURCES 
-        title: "Settings"
+        title: "Resources"
         collapsible: true
         description: |
           Resources for Container 
