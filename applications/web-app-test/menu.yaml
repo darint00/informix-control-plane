@@ -29,31 +29,25 @@ spec:
             type: text 
             value: "8080" 
 
-      - name: INSTALL_STORAGE
-        title: "Install Storage"
-        collapsible: true
-        description: |
-          Define the type of Storage used for VectorMPP 
-        items:
-          - name:  INSTALL_STOAGE_GCP 
-            title: "Install GCP Storage"
-            type: text 
-            value: "Gcp options" 
-          - name: INSTALL_STORAGE_AWS
-            title: "Install AWS Storage"
-            type: text 
-            value: "AWS options" 
-
       - name: SETTINGS
         title: "Settings"
         collapsible: true
         description: |
           Application-specific settings. ICP does not interpret this section.
         items:
-          - name: settings.note
+          - name: NOTE 
             title: "Note"
             type: text
             value: "Application-specific settings go here; ICP does not interpret this section."
+      - name: LOGGING 
+        title: "Logging"
+        description: |
+          Logging level 
+        items:
+          - name: LEVEL 
+            title: "Level"
+            type: text
+            value: "info"
 
 
 
