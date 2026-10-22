@@ -1,14 +1,13 @@
 kind: Menu 
 spec:
     group:
-    - name Group1
+    - name: Group1
       collapsible: true
       items:
       - name: INSTALL_TYPE 
         title: "Install Type"
-        collapsible: true
         description: |
-        Define the type of Storage used for VectorMPP 
+          Define the type of Storage used for VectorMPP 
         items:
           - name: INSTALL_TYPE_RADIO 
             type: radio 
@@ -24,6 +23,10 @@ spec:
             title: Install Custom Options 
             type: text 
             value: "" 
+          - name: INSTALL_PORT
+            title: Install Port Forward 
+            type: text 
+            value: "8080" 
 
       - name: INSTALL_STORAGE
         title: "Install Storage"
@@ -31,11 +34,11 @@ spec:
         description: |
         Define the type of Storage used for VectorMPP 
         items:
-          - name: services.web.ports 
+          - name:  INSTALL_STOAGE_GCP 
             title: "Install GCP Storage"
             type: text 
             value: "Gcp options" 
-          - name: INSTALL_STORAGE_AWS_
+          - name: INSTALL_STORAGE_AWS
             title: "Install AWS Storage"
             type: text 
             value: "AWS options" 
