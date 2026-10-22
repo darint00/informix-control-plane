@@ -20,9 +20,6 @@ spec:
             type: text
             value: "128m"
     - name: SETTINGS
-      title: "Settings"
-      description: |
-        Settings for the application
       items:
         - name: NOTE 
           title: "Note"
