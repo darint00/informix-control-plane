@@ -1,53 +1,43 @@
 kind: Menu 
 spec:
     group:
-    - name: GROUP_ONE
+    - name: GROUP_ONE 
       title: "Group 1" 
       collapsible: true
       items:
-      - name: INSTALL_TYPE 
-        title: "Install Type"
-        description: |
-          Define the type of Storage used for VectorMPP 
-        items:
-          - name: INSTALL_TYPE_RADIO 
-            type: radio 
-            default: install_all 
-            items:
-              - name: install_all 
-                title: "Install All"
-              - name: custom
-                title: Custom 
-              - name: debug_hang 
-                title: Debug Hang
-          - name: INSTALL_CUSTOM_OPTION
-            title: Install Custom Options 
-            type: text 
-            value: "" 
-          - name: INSTALL_PORT
-            title: Install Port Forward 
-            type: text 
-            value: "8080" 
-
-      - name: SETTINGS
+      - name: RESOURCES 
         title: "Settings"
         collapsible: true
         description: |
-          Application-specific settings. ICP does not interpret this section.
+          Resources for Container 
         items:
-          - name: NOTE 
-            title: "Note"
+          - name: CPUS 
+            title: "Cpus"
             type: text
-            value: "Application-specific settings go here; ICP does not interpret this section."
-      - name: LOGGING 
-        title: "Logging"
-        description: |
-          Logging level 
-        items:
-          - name: LEVEL 
-            title: "Level"
+            value: "0.5"
+          - name: MEMORY 
+            title: "Memory"
             type: text
-            value: "info"
+            value: "128m"
+    - name: SETTINGS
+      title: "Settings"
+      collapsible: true
+      description: |
+        Application-specific settings. ICP does not interpret this section.
+      items:
+        - name: NOTE 
+          title: "Note"
+          type: text
+          value: "Application-specific settings go here; ICP does not interpret this section."
+    - name: LOGGING 
+      title: "Logging"
+      description: |
+        Logging level 
+      items:
+        - name: LEVEL 
+          title: "Level"
+          type: text
+          value: "info"
 
 
 
