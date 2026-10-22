@@ -1,129 +1,39 @@
-kind: Menu
+kind: Menu 
 spec:
-    - name: APPLICATION
-      title: "Application"
+    - name: INSTALL_TYPE 
+      title: "Install Type"
       collapsible: true
       description: |
-       Identity of the application as shown in ICP.
+       Define the type of Storage used for VectorMPP 
       items:
-        - name: application.name
-          title: "Name"
-          type: text
-          value: "Sample Web Application"
-        - name: application.version
-          title: "Version"
-          type: text
-          value: "1.0.0"
-
-    - name: IMAGE
-      title: "Image"
-      collapsible: true
-      description: |
-       Container image to deploy.
-      items:
-        - name: image.repository
-          title: "Repository"
-          type: text
-          value: "nginx"
-        - name: image.tag
-          title: "Tag"
-          type: text
-          value: "1.27-alpine"
-
-    - name: ENVIRONMENT
-      title: "Environment"
-      collapsible: true
-      description: |
-       Environment variables passed to the container.
-      items:
-        - name: environment.NGINX_ENTRYPOINT_QUIET_LOGS
-          title: "NGINX_ENTRYPOINT_QUIET_LOGS"
-          type: text
-          value: "1"
-
-    - name: PORTS
-      title: "Ports"
-      collapsible: true
-      description: |
-       Port mapping between the container and the host.
-      items:
-        - name: ports.0.name
-          title: "Port Name"
-          type: text
-          value: "http"
-        - name: ports.0.container
-          title: "Container Port"
-          type: number
-          value: 80
-        - name: ports.0.host
-          title: "Host Port"
-          type: number
-          value: 8081
-
-    - name: RESOURCES
-      title: "Resources"
-      collapsible: true
-      description: |
-       CPU and memory limits for the container.
-      items:
-        - name: resources.cpus
-          title: "CPUs"
-          type: number
-          value: 0.5
-        - name: resources.memory
-          title: "Memory"
-          type: text
-          value: "128m"
-
-    - name: HEALTHCHECK
-      title: "Health Check"
-      collapsible: true
-      description: |
-       How ICP determines whether the container is healthy.
-      items:
-        - name: healthcheck.test
-          title: "Test Command"
-          type: text
-          value: 'CMD-SHELL, wget -q -O /dev/null http://127.0.0.1/ || exit 1'
-        - name: healthcheck.interval
-          title: "Interval"
-          type: text
-          value: "15s"
-        - name: healthcheck.timeout
-          title: "Timeout"
-          type: text
-          value: "3s"
-        - name: healthcheck.retries
-          title: "Retries"
-          type: number
-          value: 3
-
-    - name: LOGGING
-      title: "Logging"
-      collapsible: true
-      description: |
-       Log verbosity for the application.
-      items:
-        - name: logging.level
-          type: radio
-          default: info
+        - name: INSTALL_TYPE_RADIO 
+          type: radio 
+          default: install_all 
           items:
-            - name: debug
-              title: "Debug"
-            - name: info
-              title: "Info"
-            - name: warn
-              title: "Warn"
-            - name: error
-              title: "Error"
+            - name: install_all 
+              title: "Install All"
+            - name: custom
+              title: Custom 
+            - name: debug_hang 
+              title: Debug Hang
+        - name: INSTALL_CUSTOM_OPTION
+          title: Install Custom Options 
+          type: text 
+          value: "" 
 
-    - name: SETTINGS
-      title: "Settings"
+    - name: INSTALL_STORAGE
+      title: "Install Storage"
       collapsible: true
       description: |
-       Application-specific settings. ICP does not interpret this section.
+       Define the type of Storage used for VectorMPP 
       items:
-        - name: settings.note
-          title: "Note"
-          type: text
-          value: "Application-specific settings go here; ICP does not interpret this section."
+        - name: services.web.ports 
+          title: "Install GCP Storage"
+          type: text 
+          value: "Gcp options" 
+        - name: INSTALL_STORAGE_AWS_
+          title: "Install AWS Storage"
+          type: text 
+          value: "AWS options" 
+    
+
