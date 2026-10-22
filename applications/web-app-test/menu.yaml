@@ -1,7 +1,8 @@
 kind: Menu 
 spec:
     group:
-    - name: Group1
+    - name: GROUP_ONE
+      title: "Group 1" 
       collapsible: true
       items:
       - name: INSTALL_TYPE 
