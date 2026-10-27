@@ -115,6 +115,7 @@ spec:
       type: helm-application
       configuration_file: applications/nginx-helm/configuration.yaml
       editable_files:
+        - applications/nginx-helm/configuration.yaml
         - applications/nginx-helm/values.yaml
       deployment:
         method: helm 
