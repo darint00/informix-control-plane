@@ -1,0 +1,11 @@
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "5555:80"
+    volumes:
+      - nginx_config:/etc/nginx/conf.d:ro
+
+volumes:
+  nginx_config:
+

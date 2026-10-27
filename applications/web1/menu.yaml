@@ -1,0 +1,41 @@
+kind: Menu 
+spec:
+    group:
+    - name: GROUP_ONE 
+      title: "Group 1" 
+      collapsible: true
+      items:
+      - name: RESOURCES 
+        title: "Resources"
+        collapsible: true
+        description: |
+          Resources for Container 
+        items:
+          - name: CPUS 
+            title: "Cpus"
+            type: text
+            value: "0.5"
+          - name: MEMORY 
+            title: "Memory"
+            type: text
+            value: "128m"
+    - name: SETTINGS
+      title: "Settings"
+      description: ""
+      items:
+        - name: NOTE 
+          title: "Note"
+          type: text
+          value: ""
+    - name: LOGGING 
+      title: "Logging"
+      description: |
+        Logging level 
+      items:
+        - name: LEVEL 
+          title: "Level"
+          type: text
+          value: "info"
+
+
+

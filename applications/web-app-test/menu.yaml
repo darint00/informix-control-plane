@@ -20,7 +20,7 @@ spec:
             type: text
             value: "128m"
     - name: SETTINGS
-      title: ""
+      title: "Settings"
       description: ""
       items:
         - name: NOTE 
