@@ -119,7 +119,8 @@ spec:
         - applications/nginx-helm/values.yaml
       deployment:
         method: helm 
-        manifest: applications/nginx-helm/nginx-helm-chart.zip
+        chart: applications/nginx-helm/nginx-helm-chart.zip
+        values: applications/nginx-helm/values.yaml
         primary_service: web
       metadata:
         category: demo

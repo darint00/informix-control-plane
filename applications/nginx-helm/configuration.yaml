@@ -1,0 +1,11 @@
+apiVersion: icp/v1
+kind: ApplicationConfiguration
+spec:
+  application:
+    name: nginx-helm
+  helm:
+    namespace: icp-{instance}
+    timeout: 5m
+    atomic: true
+
+
