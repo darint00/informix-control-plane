@@ -4,13 +4,13 @@ spec:
   application:
     name: S3 Storage (RustFS)
     version: "1.0.1"
-  # secrets:                       # names only; values are entered at deploy time and never stored
-  #   - name: RUSTFS_ACCESS_KEY
-  #     description: Access key for the S3 API and web console
-  #     required: true
-  #   - name: RUSTFS_SECRET_KEY
-  #     description: Secret key for the S3 API and web console
-  #     required: true
+  secrets:                       # names only; values are entered at deploy time and never stored
+    - name: RUSTFS_ACCESS_KEY
+      description: Access key for the S3 API and web console (blank uses the dev default, rustfsadmin)
+      required: false
+    - name: RUSTFS_SECRET_KEY
+      description: Secret key for the S3 API and web console (blank uses the dev default, rustfsadmin)
+      required: false
   init_services:                 # run once and exit; a finished one is not "partial" or failed
     - rustfs-init                # creates the bucket
   permissions:

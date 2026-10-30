@@ -5,11 +5,11 @@ services:
     container_name: rustfs
     hostname: rustfs
     environment:
-      # Local dev defaults only - override via env/.env, never reuse real credentials
-      #RUSTFS_ACCESS_KEY: "${RUSTFS_ACCESS_KEY:-rustfsadmin}"
-      #RUSTFS_SECRET_KEY: "${RUSTFS_SECRET_KEY:-rustfsadmin}"
-      RUSTFS_ACCESS_KEY: "rustfsadmin"
-      RUSTFS_SECRET_KEY: "rustfsadmin"
+      # Local dev defaults only - override via env/.env, never reuse real credentials.
+      # ICP supplies these from the secrets in configuration.yaml. Every service that needs them must read the same
+      # variables (see rustfs-init below): ICP does not put secrets into the other services' environment itself.
+      RUSTFS_ACCESS_KEY: "${RUSTFS_ACCESS_KEY:-rustfsadmin}"
+      RUSTFS_SECRET_KEY: "${RUSTFS_SECRET_KEY:-rustfsadmin}"
     ports:
       - "9000:9000"   # S3 API
       - "9001:9001"   # web console
@@ -33,10 +33,9 @@ services:
         done
         aws --endpoint-url http://rustfs:9000 s3 mb s3://data || true
     environment:
-      #AWS_ACCESS_KEY_ID: "${RUSTFS_ACCESS_KEY:-rustfsadmin}"
-      #AWS_SECRET_ACCESS_KEY: "${RUSTFS_SECRET_KEY:-rustfsadmin}"
-      AWS_ACCESS_KEY_ID: "rustfsadmin"
-      AWS_SECRET_ACCESS_KEY: "rustfsadmin"
+      # Must be the same credentials rustfs starts with, or this job never gets in and the bucket is never created.
+      AWS_ACCESS_KEY_ID: "${RUSTFS_ACCESS_KEY:-rustfsadmin}"
+      AWS_SECRET_ACCESS_KEY: "${RUSTFS_SECRET_KEY:-rustfsadmin}"
       AWS_DEFAULT_REGION: us-east-1
     networks:
       - ae-net
