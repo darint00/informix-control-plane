@@ -49,7 +49,7 @@ services:
       VECTORWISE_DOCKER_DEPLOYMENT: true 
     volumes:
       - spark-provider:/provider-config
-      - /home/darint/ACTIAN/GITREPOS/misc/AnalyticsEngine/spark:/opt/spark/work-dir
+      - /home/darint/ACTIAN/GITREPOS/misc/AnalyticsEngine/tests/ext-csv:/opt/spark/work-dir
     group_add:
       - "999"
     networks:

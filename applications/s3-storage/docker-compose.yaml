@@ -22,6 +22,7 @@ services:
   # One-shot: create the bucket, then exit
   rustfs-init:
     image: amazon/aws-cli:latest
+    container_name: rustfs-init
     depends_on:
       - rustfs
     entrypoint: ["/bin/sh", "-c"]
