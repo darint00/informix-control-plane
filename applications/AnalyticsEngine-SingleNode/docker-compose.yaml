@@ -71,6 +71,7 @@ services:
 networks:
   ae-net:
     driver: bridge
+    name: ae-net   # fixed name so other applications (e.g. s3-storage) can join it; declared under permissions.networks
 
 volumes:
   ae-data:

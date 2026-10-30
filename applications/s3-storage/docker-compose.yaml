@@ -2,7 +2,6 @@ services:
   # RustFS: S3-compatible object storage. Endpoint on ae-net: http://rustfs:9000
   rustfs:
     image: rustfs/rustfs:latest
-    container_name: rustfs
     hostname: rustfs
     environment:
       # Local dev defaults only - override via env/.env, never reuse real credentials
@@ -20,7 +19,6 @@ services:
   # One-shot: create the bucket, then exit
   rustfs-init:
     image: amazon/aws-cli:latest
-    container_name: rustfs-init
     depends_on:
       - rustfs
     entrypoint: ["/bin/sh", "-c"]
@@ -29,7 +27,7 @@ services:
         until aws --endpoint-url http://rustfs:9000 s3api list-buckets >/dev/null 2>&1; do
           echo "waiting for s3..."; sleep 2
         done
-        aws --endpoint-url http://rustfs:9000 s3 mb s3://${S3_BUCKET:-data} || true
+        aws --endpoint-url http://rustfs:9000 s3 mb s3://data || true
     environment:
       AWS_ACCESS_KEY_ID: "${RUSTFS_ACCESS_KEY:-rustfsadmin}"
       AWS_SECRET_ACCESS_KEY: "${RUSTFS_SECRET_KEY:-rustfsadmin}"
@@ -40,11 +38,10 @@ services:
 
 networks:
   ae-net:
-    # Created by the main compose file (project "spark" -> network "spark_ae-net").
-    # Start that stack first. If you run it with a different project name (-p /
-    # COMPOSE_PROJECT_NAME), change this name to match: `docker network ls`.
+    # Created by the Analytics Engine application (its network has the fixed name ae-net). Deploy that application first;
+    # The deployment fails at `docker compose up` if the network does not exist. Declared under permissions.networks.
     external: true
-    name: compose_ae-net
+    name: ae-net
 
 volumes:
   rustfs-data:

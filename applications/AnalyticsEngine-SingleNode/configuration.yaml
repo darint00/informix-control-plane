@@ -10,3 +10,5 @@ spec:
       - /home/darint/ACTIAN/GITREPOS/misc
     new_privileges:              # services whose startup uses sudo; ICP otherwise starts containers with no-new-privileges
       - ae
+    networks:                    # fixed network names; s3-storage joins ae-net
+      - ae-net
