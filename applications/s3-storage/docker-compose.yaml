@@ -2,6 +2,7 @@ services:
   # RustFS: S3-compatible object storage. Endpoint on ae-net: http://rustfs:9000
   rustfs:
     image: rustfs/rustfs:latest
+    container_name: rustfs
     hostname: rustfs
     environment:
       # Local dev defaults only - override via env/.env, never reuse real credentials
