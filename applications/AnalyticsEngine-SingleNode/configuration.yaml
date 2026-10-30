@@ -10,10 +10,6 @@ spec:
   environment:
     CREATE_DB: db                # database created on first start
     II_INSTALLATION: VW          # installation ID
-  secrets:                       # names only; values are entered at deploy time and never stored
-    - name: ACTIAN_PASSWORD
-      description: Password for the actian user
-      required: true
   ports:
     - name: port-27832
       container: 27832

@@ -3,8 +3,8 @@ services:
     image: repo.dev.actiandatacloud.com:5000/actian/analytics-engine-sn_dev:8.0.0
     hostname: ae
     environment:
-      ACTIAN_PASSWORD: "${ACTIAN_PASSWORD:-actian}"
-      CREATE_DB: "${CREATE_DB:-db}"
+      ACTIAN_PASSWORD: "actian"
+      CREATE_DB: "db"
       II_INSTALLATION: "${II_INSTALLATION:-VW}"
       UDF_HOST: udf
       UDF_PORT: "32225"
