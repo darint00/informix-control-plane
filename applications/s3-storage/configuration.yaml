@@ -3,7 +3,7 @@ kind: ApplicationConfiguration
 spec:
   application:
     name: S3 Storage (RustFS)
-    version: "1.0.0"
+    version: "1.0.1"
   # secrets:                       # names only; values are entered at deploy time and never stored
   #   - name: RUSTFS_ACCESS_KEY
   #     description: Access key for the S3 API and web console
