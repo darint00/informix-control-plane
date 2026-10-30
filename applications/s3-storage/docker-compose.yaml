@@ -50,3 +50,4 @@ networks:
 volumes:
   rustfs-data:
     name: s3-rustfs-data   # exact name; without this compose prefixes the project name
+
