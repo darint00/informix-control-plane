@@ -1,6 +1,7 @@
 services:
   ae:
     image: repo.dev.actiandatacloud.com:5000/actian/analytics-engine-sn_dev:8.0.0
+    container_name: ae
     hostname: ae
     environment:
       ACTIAN_PASSWORD: "actian"
@@ -40,6 +41,7 @@ services:
     # tty: true
     entrypoint: ["/bin/bash", "-c"]
     command: ["/opt/copy_call_start_provider.sh"]
+    container_name: ae-spark
     hostname: spark
     environment:
       SPARK_PROVIDER_PORT: 65000 
@@ -59,6 +61,7 @@ services:
   udf:
     image: actian/analyticsengine8.0-udf-linux:1.4.4
     #command: [/bin/bash, -c, 'echo "/opt/Actian/vectorwise-udf/bin/x100_udf_engine --nosigint &" >/tmp/boot.sh; echo "sleep 5; tail -n0 -F /opt/Actian/vectorwise-udf/log/vectorwise_udf.default.log" >> /tmp/boot.sh ; bash /tmp/boot.sh']
+    container_name: ae-udf
     hostname: udf
     volumes:
       - udf-log:/opt/Actian/vectorwise-udf/log

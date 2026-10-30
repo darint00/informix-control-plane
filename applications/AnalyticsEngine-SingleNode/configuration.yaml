@@ -40,6 +40,10 @@ spec:
       mountPath: /opt/Actian/AnalyticsEngine/ingres/udf/import
     - name: spark-provider
       mountPath: /opt/Actian/AnalyticsEngine/ingres/files/spark-provider
+  permissions:                   # exceptions to ICP's default manifest policy; honoured only from this catalog file
+    container_names: true        # docker-compose.yaml sets container_name (ae, ae-spark, ae-udf)
+    host_paths:                  # host directories docker-compose.yaml may bind-mount
+      - /home/darint/ACTIAN/GITREPOS/misc
   logging:
     level: info
   settings:
