@@ -4,13 +4,13 @@ spec:
   application:
     name: S3 Storage (RustFS)
     version: "1.0.0"
-  secrets:                       # names only; values are entered at deploy time and never stored
-    - name: RUSTFS_ACCESS_KEY
-      description: Access key for the S3 API and web console
-      required: true
-    - name: RUSTFS_SECRET_KEY
-      description: Secret key for the S3 API and web console
-      required: true
+  # secrets:                       # names only; values are entered at deploy time and never stored
+  #   - name: RUSTFS_ACCESS_KEY
+  #     description: Access key for the S3 API and web console
+  #     required: true
+  #   - name: RUSTFS_SECRET_KEY
+  #     description: Secret key for the S3 API and web console
+  #     required: true
   permissions:
     networks:                    # joins the network created by the Analytics Engine application
       - ae-net
