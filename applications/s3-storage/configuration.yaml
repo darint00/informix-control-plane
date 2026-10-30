@@ -11,6 +11,9 @@ spec:
   #   - name: RUSTFS_SECRET_KEY
   #     description: Secret key for the S3 API and web console
   #     required: true
+  init_services:                 # run once and exit; a finished one is not "partial" or failed
+    - rustfs-init                # creates the bucket
   permissions:
+    container_names: true
     networks:                    # joins the network created by the Analytics Engine application
       - ae-net
