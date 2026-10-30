@@ -4,24 +4,8 @@ spec:
   application:
     name: Sample Web Application
     version: "1.0.0"
-  image:
-    repository: nginx
-    tag: 1.27-alpine
-  environment:
-    NGINX_ENTRYPOINT_QUIET_LOGS: "1"
-  ports:
-    - name: http
-      container: 80
-      host: 8081
-  resources:
-    cpus: 0.5
-    memory: 128m
-  healthcheck:
-    test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/ || exit 1"]
-    interval: 15s
-    timeout: 3s
-    retries: 3
-  logging:
-    level: info
+  files:                         # ICP copies these into the primary service's container (inside a writable named volume)
+    - source: nginx.conf         # relative to this application's folder in the catalog
+      target: /etc/nginx/conf.d/default.conf
   settings:
     note: Application-specific settings go here; ICP does not interpret this section.

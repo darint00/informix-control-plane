@@ -1,8 +1,20 @@
+# The primary service 'api' carries its ports, environment, resources and volume here; configuration.yaml holds secrets, model and identity.
 services:
   api:
-    image: registry.example.com/icp/document-agent-api:1.0.0
+    image: registry.example.com/icp/document-agent-api:1.0.0   # PLACEHOLDER (API service)
+    ports:
+      - "8084:8000"
+    environment:
+      MAX_DOCUMENT_MB: "25"
+      OCR_ENABLED: "true"
+    mem_limit: 1g
+    volumes:
+      - document-store:/var/documents
     depends_on: [worker]
   worker:
     image: registry.example.com/icp/document-agent-worker:1.0.0
     environment:
       WORKER_CONCURRENCY: "2"
+
+volumes:
+  document-store:

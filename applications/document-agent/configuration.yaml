@@ -4,24 +4,9 @@ spec:
   application:
     name: Document Processing Agent
     version: "1.0.0"
-  image:
-    repository: registry.example.com/icp/document-agent-api   # PLACEHOLDER (API service)
-    tag: "1.0.0"
-  environment:
-    MAX_DOCUMENT_MB: 25
-    OCR_ENABLED: true
   secrets:
     - name: LLM_API_KEY
       required: true
-  ports:
-    - name: api
-      container: 8000
-      host: 8084
-  volumes:
-    - name: document-store
-      mountPath: /var/documents
-  resources:
-    memory: 1g
   model:
     provider: openai
     id: gpt-4o

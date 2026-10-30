@@ -4,30 +4,13 @@ spec:
   application:
     name: Hermes AI Agent
     version: "1.0.0"
-  image:
-    repository: registry.example.com/icp/hermes-agent    # PLACEHOLDER - replace with your Hermes image
-    tag: latest
-  environment:
-    HERMES_WORKSPACE: /workspace
   secrets:
     - name: HERMES_API_KEY
       description: Provider API key used by the agent
       required: true
-  ports:
-    - name: http
-      container: 8080
-      host: 8083
-  volumes:
-    - name: hermes-workspace
-      mountPath: /workspace
-  resources:
-    cpus: 2
-    memory: 2g
   model:
     provider: anthropic
     id: claude-sonnet-5-5
-  logging:
-    level: info
   settings:
     tools:
       - web-search

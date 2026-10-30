@@ -1,7 +1,16 @@
-# Image, ports, env, health check and resources are applied from configuration.yaml by ICP.
+# Image, ports, environment, resources and health check are defined here; configuration.yaml holds only the application identity.
 services:
   web:
     image: nginx:1.27-alpine
-
-
-
+    ports:
+      - "8081:80"
+    environment:
+      NGINX_ENTRYPOINT_QUIET_LOGS: "1"
+    cpus: 0.5
+    mem_limit: 128m
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/ || exit 1"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
