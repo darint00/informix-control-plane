@@ -54,3 +54,4 @@ spec:
         image: actian/analyticsengine8.0-spark-linux:4.3.5
       - name: udf
         image: actian/analyticsengine8.0-udf-linux:1.4.4
+
