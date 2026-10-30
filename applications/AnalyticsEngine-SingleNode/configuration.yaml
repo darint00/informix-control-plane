@@ -1,0 +1,54 @@
+apiVersion: icp/v1
+kind: ApplicationConfiguration
+spec:
+  application:
+    name: Analytics Engine Single Node
+    version: "8.0.0"
+  image:
+    repository: repo.dev.actiandatacloud.com:5000/actian/analytics-engine-sn_dev   # dev registry - replace for release
+    tag: "8.0.0"
+  environment:
+    CREATE_DB: db                # database created on first start
+    II_INSTALLATION: VW          # installation ID
+  secrets:                       # names only; values are entered at deploy time and never stored
+    - name: ACTIAN_PASSWORD
+      description: Password for the actian user
+      required: true
+  ports:
+    - name: port-27832
+      container: 27832
+      host: 27832
+    - name: port-27839
+      container: 27839
+      host: 27839
+    - name: port-44223
+      container: 44223
+      host: 44223
+    - name: port-16902
+      container: 16902
+      host: 16902
+  volumes:
+    - name: ae-data
+      mountPath: /opt/Actian/AnalyticsEngine/ingres/data
+    - name: ae-ckp
+      mountPath: /opt/Actian/AnalyticsEngine/ingres/ckp
+    - name: ae-jnl
+      mountPath: /opt/Actian/AnalyticsEngine/ingres/jnl
+    - name: ae-log
+      mountPath: /opt/Actian/AnalyticsEngine/ingres/log
+    - name: ae-files
+      mountPath: /opt/Actian/AnalyticsEngine/ingres/files
+    - name: udf-log
+      mountPath: /opt/Actian/AnalyticsEngine/ingres/udf/log
+    - name: udf-import
+      mountPath: /opt/Actian/AnalyticsEngine/ingres/udf/import
+    - name: spark-provider
+      mountPath: /opt/Actian/AnalyticsEngine/ingres/files/spark-provider
+  logging:
+    level: info
+  settings:
+    companion_services:          # run by docker-compose.yaml alongside the primary service "ae"
+      - name: spark
+        image: actian/analyticsengine8.0-spark-linux:4.3.5
+      - name: udf
+        image: actian/analyticsengine8.0-udf-linux:1.4.4

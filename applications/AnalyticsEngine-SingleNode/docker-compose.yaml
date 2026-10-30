@@ -1,0 +1,84 @@
+services:
+  ae:
+    image: "${AE_IMAGE:-repo.dev.actiandatacloud.com:5000/actian/analytics-engine-sn_dev}:${AE_TAG:-8.0.0}"
+    container_name: ae
+    hostname: ae
+    environment:
+      ACTIAN_PASSWORD: "${ACTIAN_PASSWORD:-actian}"
+      CREATE_DB: "${CREATE_DB:-db}"
+      II_INSTALLATION: "${II_INSTALLATION:-VW}"
+      UDF_HOST: udf
+      UDF_PORT: "32225"
+    ports:
+      - "27832:27832"
+      - "27839:27839"
+      - "44223:44223"
+      - "16902:16902"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ae-data:/opt/Actian/AnalyticsEngine/ingres/data
+      - ae-ckp:/opt/Actian/AnalyticsEngine/ingres/ckp
+      - ae-jnl:/opt/Actian/AnalyticsEngine/ingres/jnl
+      - ae-log:/opt/Actian/AnalyticsEngine/ingres/log
+      - ae-files:/opt/Actian/AnalyticsEngine/ingres/files
+      # Shared with the udf service so UDF logs/imports land in both places
+      # (mirrors the bind mounts the engine itself uses when it launches a
+      # UDF container on demand, via udf_engines.conf's dockman command).
+      - udf-log:/opt/Actian/AnalyticsEngine/ingres/udf/log
+      - udf-import:/opt/Actian/AnalyticsEngine/ingres/udf/import
+      - spark-provider:/opt/Actian/AnalyticsEngine/ingres/files/spark-provider
+    networks:
+      - ae-net
+    depends_on:
+      - udf
+      - spark
+    restart: unless-stopped
+
+  spark:
+    image: actian/analyticsengine8.0-spark-linux:4.3.5
+    # entrypoint: ["/bin/bash"]
+    # stdin_open: true
+    # tty: true
+    entrypoint: ["/bin/bash", "-c"]
+    command: ["/opt/copy_call_start_provider.sh"]
+    container_name: ae-spark
+    hostname: spark
+    environment:
+      SPARK_PROVIDER_PORT: 65000 
+      SPARK_PROVIDER_USER: spark 
+      SPARK_PROVIDER_PW: spark 
+      VECTORWISE_DOCKER_DEPLOYMENT: true 
+    volumes:
+      - spark-provider:/provider-config
+      - /home/darint/ACTIAN/GITREPOS/misc/AnalyticsEngine/spark:/opt/spark/work-dir
+    group_add:
+      - "999"
+    networks:
+      - ae-net
+    restart: unless-stopped
+
+  udf:
+    image: actian/analyticsengine8.0-udf-linux:1.4.4
+    #command: [/bin/bash, -c, 'echo "/opt/Actian/vectorwise-udf/bin/x100_udf_engine --nosigint &" >/tmp/boot.sh; echo "sleep 5; tail -n0 -F /opt/Actian/vectorwise-udf/log/vectorwise_udf.default.log" >> /tmp/boot.sh ; bash /tmp/boot.sh']
+    container_name: ae-udf
+    hostname: udf
+    volumes:
+      - udf-log:/opt/Actian/vectorwise-udf/log
+      - udf-import:/opt/Actian/vectorwise-udf/import
+    networks:
+      - ae-net
+    restart: unless-stopped
+
+networks:
+  ae-net:
+    driver: bridge
+
+volumes:
+  ae-data:
+  ae-ckp:
+  ae-jnl:
+  ae-log:
+  ae-files:
+  udf-log:
+  udf-import:
+  spark-provider:

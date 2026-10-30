@@ -1,0 +1,32 @@
+apiVersion: icp/v1
+kind: ApplicationConfiguration
+spec:
+  application:
+    name: S3 Storage (RustFS)
+    version: "1.0.0"
+  image:
+    repository: rustfs/rustfs
+    tag: latest                  # matches docker-compose.yaml; pin a specific version for repeatable deploys
+  environment:
+    S3_BUCKET: data              # bucket created by the rustfs-init job
+  secrets:                       # names only; values are entered at deploy time and never stored
+    - name: RUSTFS_ACCESS_KEY
+      description: Access key for the S3 API and web console
+      required: true
+    - name: RUSTFS_SECRET_KEY
+      description: Secret key for the S3 API and web console
+      required: true
+  ports:
+    - name: s3-api
+      container: 9000
+      host: 9000
+    - name: console
+      container: 9001
+      host: 9001
+  volumes:
+    - name: rustfs-data
+      mountPath: /data
+  logging:
+    level: info
+  settings:
+    network: compose_ae-net      # external network; must exist before deploy (see docker-compose.yaml)

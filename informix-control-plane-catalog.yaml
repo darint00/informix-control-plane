@@ -108,6 +108,38 @@ spec:
       metadata:
         category: demo
 
+    - id: s3-storage
+      name: S3 Storage
+      description: S3 compatible storage service using RustFS
+      version: "1.0.0"
+      type: docker-application
+      configuration_file: applications/s3-storage/configuration.yaml
+      editable_files:
+        - applications/s3-storage/configuration.yaml
+        - applications/s3-storage/docker-compose.yaml
+      deployment:
+        method: docker-compose
+        manifest: applications/s3-storage/docker-compose.yaml
+        primary_service: rustfs
+      metadata:
+        category: demo
+
+    - id: analytics-engine-single-node
+      name: Analytics Engine Single Node
+      description: Actian Analytics Engine single-node deployment with Spark provider and UDF engine companion services.
+      version: "8.0.0"
+      type: docker-application
+      configuration_file: applications/AnalyticsEngine-SingleNode/configuration.yaml
+      editable_files:
+        - applications/AnalyticsEngine-SingleNode/configuration.yaml
+        - applications/AnalyticsEngine-SingleNode/docker-compose.yaml
+      deployment:
+        method: docker-compose
+        manifest: applications/AnalyticsEngine-SingleNode/docker-compose.yaml
+        primary_service: ae
+      metadata:
+        category: analytics
+
     - id: nginx-helm 
       name: nginx-helm 
       description: Static web server (nginx) that can be deployed end-to-end from public images; use it to try ICP.
