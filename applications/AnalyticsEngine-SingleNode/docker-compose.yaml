@@ -28,7 +28,6 @@ services:
       - spark-provider:/opt/Actian/AnalyticsEngine/ingres/files/spark-provider
     networks:
       ae-net:
-        aliases: [ae]
     depends_on:
       - udf
       - spark
@@ -55,7 +54,6 @@ services:
       - "999"
     networks:
       ae-net:
-        aliases: [ae-spark]
     restart: unless-stopped
 
   udf:
@@ -68,7 +66,6 @@ services:
       - udf-import:/opt/Actian/vectorwise-udf/import
     networks:
       ae-net:
-        aliases: [ae-udf]
     restart: unless-stopped
 
 networks:
